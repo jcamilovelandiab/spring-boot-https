@@ -12,7 +12,7 @@ public class LoginController {
     UserServices userServices;
 
     @PostMapping("/login")
-    public Object Login(@RequestParam User login) throws ServletException {
+    public User Login(@RequestParam User login) throws ServletException {
         if(login.getEmail()==null || login.getPassword()==null){
             throw new ServletException("Please, fill in email and password!");
         }
@@ -27,7 +27,7 @@ public class LoginController {
     }
 
     @PostMapping("/signup")
-    public Object SignUp(@RequestParam User user) throws ServletException {
+    public User SignUp(@RequestParam User user) throws ServletException {
         try {
             User saveUser = userServices.saveUser(user); saveUser.setPassword(null);
             return saveUser;
