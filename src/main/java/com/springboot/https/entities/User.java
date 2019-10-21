@@ -1,9 +1,10 @@
-package com.springboot.https.controllers.entities;
+package com.springboot.https.entities;
 
 public class User {
     String name;
     String email;
     String password;
+    String id;
 
     public User(){}
     public User(String name, String email, String password){
@@ -20,6 +21,9 @@ public class User {
     public String getPassword(){
         return this.password;
     }
+    public String getId(){
+        return this.id;
+    }
     public void setName(String name){
         this.name = name;
     }
@@ -28,5 +32,8 @@ public class User {
     }
     public void setPassword(String password){
         this.password = password;
+    }
+    public void setId(String id){
+        this.id = id;
     }
 }
