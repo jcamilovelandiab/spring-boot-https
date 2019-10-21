@@ -16,13 +16,14 @@ public class LoginController {
         if(login.getEmail()==null || login.getPassword()==null){
             throw new ServletException("Please, fill in email and password!");
         }
-        User user;
+
         try {
-            user = userServices.getUserByEmailAndPassword(login.getEmail(), login.getPassword());
+            User user = userServices.getUserByEmailAndPassword(login.getEmail(), login.getPassword());
+            user.setPassword(null);
+            return user;
         } catch (Exception e) {
             throw new ServletException("Invalid Login. User or password is incorrect!");
         }
-        return "Valid login. Welcome!";
     }
 
     @PostMapping("/signup")
