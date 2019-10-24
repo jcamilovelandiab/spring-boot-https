@@ -6,24 +6,19 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name="user")
+@Table(name = "role")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@NoArgsConstructor
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
-
-    @Column(name = "name")
-    String name;
-    @Column(name = "email")
-    String email;
-    @Column(name = "password")
-    String password;
     @Column(name = "role_id")
-    String idRole;
+    private Integer id;
 
+    @Column(name = "role")
+    private String role;
 }
