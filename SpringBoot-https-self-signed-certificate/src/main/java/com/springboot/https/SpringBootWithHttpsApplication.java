@@ -24,7 +24,7 @@ public class SpringBootWithHttpsApplication {
 	}
 
 	/**
-	 * This method makes the connection between this API and the Math API.
+	 * SSL execution
 	 * @return RestTemplate This is the mathServices
 	 */
 	@Bean
@@ -35,13 +35,14 @@ public class SpringBootWithHttpsApplication {
 
 		try {
 			keyStore = KeyStore.getInstance("jks");
-			ClassPathResource classPathResource = new ClassPathResource("https-example.jks");
+			ClassPathResource classPathResource = new ClassPathResource("keystore.jks");
+
 			InputStream inputStream = classPathResource.getInputStream();
-			keyStore.load(inputStream, "https-example".toCharArray());
+			keyStore.load(inputStream, "password".toCharArray());
 
 			SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(new SSLContextBuilder()
 					.loadTrustMaterial(null, new TrustSelfSignedStrategy())
-					.loadKeyMaterial(keyStore, "https-example".toCharArray()).build(),
+					.loadKeyMaterial(keyStore, "password".toCharArray()).build(),
 					NoopHostnameVerifier.INSTANCE);
 
 			HttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory)
@@ -56,6 +57,8 @@ public class SpringBootWithHttpsApplication {
 			restTemplate.setRequestFactory(requestFactory);
 		} catch (Exception exception) {
 			System.out.println("Exception Occurred while creating the restTemplate "+exception);
+			System.err.println(exception.getMessage());
+			System.err.println("--------------------------------------------------------------------------");
 			exception.printStackTrace();
 		}
 		return restTemplate;
