@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Security</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span th:utext="${userName}"></span>
+            </div>
+            <div class="panel-body">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <form autocomplete="off" action="#" class="form-horizontal"  role="form">
+                                <h2>Calculator</h2>
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <input id="num1" type="text"  placeholder="Num 1" class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <input id="num2" type="text"  placeholder="Num 2" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <button id="getSum" type="submit" class="btn btn-primary btn-block">Enter</button>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                            <h3 id="suma" style="display: none"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+        </div>
+    </div>
+
+    <form  >
+
+    </form>
+
+    <form class="form-group" th:action="@{/logout}" method="get">
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-danger btn-block" name="signup">Logout</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

@@ -17,6 +17,10 @@
 <body>
 
 <div class="container">
+
+    <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+    <h2><span class="text-danger" th:utext="${errorMessage}"></span></h2>
+
     <form autocomplete="off" action="#" th:action="@{/signup}"
           th:object="${user}" method="POST" class="form-horizontal"
           role="form">
@@ -52,8 +56,6 @@
                 <button type="submit" class="btn btn-primary btn-block">Sign up</button>
             </div>
         </div>
-
-        <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
 
         <p>
             Already have an account?
