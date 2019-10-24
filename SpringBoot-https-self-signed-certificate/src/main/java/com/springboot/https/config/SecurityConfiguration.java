@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    private static final String usersQuery = "select email, password, active from user where email=?";
+    private static final String usersQuery = "select email, password, role_id from user where email=?";
     private static final String rolesQuery = "select user.email, role.role " +
             "from user, role where user.role_id=role.role_id and user.email=?";
 
@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
     /**
-     * configure  represents the configuration for the authorization  over the pages
+     * Rules for guarantee authorisation
      * @param http
      * @throws Exception
      */
