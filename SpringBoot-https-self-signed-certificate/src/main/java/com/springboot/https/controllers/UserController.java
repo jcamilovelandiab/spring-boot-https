@@ -1,6 +1,8 @@
 package com.springboot.https.controllers;
 
+import com.springboot.https.entities.Role;
 import com.springboot.https.entities.User;
+import com.springboot.https.repositories.RoleRepository;
 import com.springboot.https.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,6 +20,8 @@ public class UserController {
 
     @Autowired
     UserServices userServices;
+    @Autowired
+    RoleRepository roleRepository;
 
     @GetMapping("/hello")
     public String hello(){
@@ -41,7 +45,14 @@ public class UserController {
     }
 
     @PostMapping(value = "/signup")
-    public ModelAndView signupPost(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView signupPost(@Valid User user, BindingResult bindingResult) throws Exception {
+
+        Role roleAdmin = new Role(new Long(1), "ADMIN");
+        user.setIdRole(roleAdmin.getId());
+        if(roleRepository.findByRole("ADMIN")==null){
+            roleRepository.save(roleAdmin);
+        }
+
         ModelAndView modelAndView = new ModelAndView();
         if (userServices.findUserByEmail(user.getEmail()) != null) {
             bindingResult.rejectValue("email", "error.user", "This email has been already taken");
