@@ -19,7 +19,12 @@ public class UserController {
     @Autowired
     UserServices userServices;
 
-    @GetMapping(value={"/", "/login"})
+    @GetMapping("/hello")
+    public String hello(){
+        return "Welcome!!. This is the test page";
+    }
+
+    @GetMapping(value={"/","/login"})
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
