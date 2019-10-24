@@ -30,7 +30,6 @@ public class SpringBootWithHttpsApplication {
 	@Bean
 	public RestTemplate getRestTemplate() {
 		RestTemplate restTemplate = new RestTemplate();
-
 		KeyStore keyStore;
 		HttpComponentsClientHttpRequestFactory requestFactory = null;
 
